@@ -3,8 +3,14 @@ H5P Three JS
 
 An H5P wrapper around the popular, easy to use and lightweight 3D library: three.js
 
-There are done some changes nessecary for the CSS2DRenderer and CSS2DObject to work inside virtual tour which is made in this wrapper. They are both commented in the code as "DIFFER FROM ORGINAL THREE.JS".
+## Changes
 
-This is setting opacity to 0 instead of display none for the CSS2DObject to make the objects possible to tab into even when out of view. Without this accesibility and keyboard naviagtion wouldn't be possible.
+There has been some changes made to the CSS2DRenderer and CSS2DObject to ensure that it works as intended for the Virtual Tour content type which utilises this library. They are all commented in the code as "DIFFER FROM ORIGINAL THREE.JS".
 
-The other change is to not use the zOrder for the CSS2DRenderer. With the zOrder it is impossible to know how high the zIndex can become. In h5p-three-image increased z-index is set when an element is focused, dragged or hovered and that is not possible with zOrder done here.
+* `opacity: 0` used instead of `display: none` for the CSS2DObject.
+    * This enables objects to tabbed in to even when out of view. Without this accesibility and keyboard naviagtion wouldn't be possible.
+    * This also required `pointer-events: none` to also be set to prevent objects being interacted with.
+* The removal of zOrder for the CSS2DRenderer.
+    * With the zOrder it is impossible to know how high the zIndex can become. In h5p-three-image increased z-index is set when an element is focused, dragged or hovered and that is not possible with zOrder done here.
+* Forced the position of CSS2DObjects to be set as whole numbers rather than decimals.
+    * When the user moved the camera around the label would draw thin black lines around the scene. By rounding to the nearest whole pixel value the issue stops happening.
