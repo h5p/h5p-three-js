@@ -1,7 +1,6 @@
 const fs = require('fs');
 const superAgent = require('superagent');
 
-const cloneURL = 'https://github.com/{org}/{repo}.git';
 const srcURL = 'https://raw.githubusercontent.com/mrdoob/three.js/{commit}/build/three.min.js';
 const srcFile = 'src.three.min.js';
 
