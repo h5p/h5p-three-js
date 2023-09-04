@@ -1,0 +1,23 @@
+{
+  "name": "h5p-three-js",
+  "version": "1.1.0",
+  "description": "Provides H5P with the popular, easy to use and lightweight 3D library: three.js",
+  "main": "builder.js",
+  "scripts": {
+    "build": "node builder.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h5p/h5p-three-js.git"
+  },
+  "author": "three.js authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h5p/h5p-three-js/issues"
+  },
+  "homepage": "https://github.com/h5p/h5p-three-js#readme",
+  "dependencies": {
+    "superagent": "^8.1.2"
+  }
+}
