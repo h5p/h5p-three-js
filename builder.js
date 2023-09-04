@@ -5,6 +5,8 @@ const cloneURL = 'https://github.com/{org}/{repo}.git';
 const srcURL = 'https://raw.githubusercontent.com/mrdoob/three.js/{commit}/build/three.min.js';
 const srcFile = 'src.three.min.js';
 
+const commit = '37bbe4e749843c50d4ff79db6f73e43ad6d31895'; // three.js tag r101
+
 // builds content from template and input
 const fromTemplate = (template, input) => {
   for (let item in input) {
@@ -27,7 +29,7 @@ const build = async() => {
     let srcData = '';
     if (!fs.existsSync('src.min.three.js')) {
       console.log('> fetching source min.three.js');
-      srcData = await getFile(fromTemplate(srcURL, { commit: '37bbe4e749843c50d4ff79db6f73e43ad6d31895' }));
+      srcData = await getFile(fromTemplate(srcURL, { commit }));
       fs.writeFileSync(srcFile, srcData);
     }
     else {
