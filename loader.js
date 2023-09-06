@@ -17,5 +17,5 @@ module.exports = function(source) {
   const template = fs.readFileSync('template.js', 'utf-8');
   const output = fromTemplate(template, { 'src.three.min.js': srcData });
   this.emitFile('three.min.js', output); // webpack distorts the source three.min.js file content so we emit it instead
-  return ''; // this will create a blank file since webpack forces you to out
+  return ''; // this will create a blank file since webpack forces you to output one
 }
