@@ -5,7 +5,7 @@ module.exports = {
     path: path.resolve(__dirname, './'),
     filename: 'blank.js'
   },
-  mode: 'production',
+  mode: process.env.NODE_ENV || 'production',
   module: {
     rules: [
       {
