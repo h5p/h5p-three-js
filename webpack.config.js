@@ -1,20 +1,9 @@
 const path =  require('path');
 module.exports = {
-  entry: './template.js',
+  entry: './three.js',
   output: {
-    path: path.resolve(__dirname, './'),
-    filename: 'blank.js'
+    path: path.resolve(__dirname, './dist'),
+    filename: 'dist.js'
   },
   mode: process.env.NODE_ENV || 'production',
-  module: {
-    rules: [
-      {
-        use: [
-          {
-            loader: path.resolve('loader.js')
-          }
-        ]
-      }
-    ]
-  }
 }
