@@ -4,6 +4,7 @@
   "description": "Provides H5P with the popular, easy to use and lightweight 3D library: three.js",
   "main": "builder.js",
   "scripts": {
+    "dev": "NODE_ENV=development webpack",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
