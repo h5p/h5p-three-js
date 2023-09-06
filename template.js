@@ -1,6 +1,6 @@
-H5P.ThreeJS = (function () {
+H5P.ThreeJS = (() => {
   {src.three.min.js}
-  var THREE = this.THREE
+  var THREE = this.THREE;
 
   /**
    * Based on http://www.emagix.net/academic/mscs-project/item/camera-sync-with-css3-and-webgl-threejs
@@ -539,5 +539,5 @@ H5P.ThreeJS = (function () {
     };
   };
   
-
-return this.THREE;}).apply({});
+  return THREE;
+})();
