@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "NODE_ENV=development webpack",
     "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "patch-package"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/h5p/h5p-three-js#readme",
   "devDependencies": {
+    "patch-package": "^8.0.0",
     "three": "0.101.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"

@@ -1,0 +1,42 @@
+diff --git a/node_modules/three/examples/js/renderers/CSS2DRenderer.js b/node_modules/three/examples/js/renderers/CSS2DRenderer.js
+index 7d45e23..b9f548e 100644
+--- a/node_modules/three/examples/js/renderers/CSS2DRenderer.js
++++ b/node_modules/three/examples/js/renderers/CSS2DRenderer.js
+@@ -76,13 +76,22 @@ THREE.CSS2DRenderer = function () {
+ 			vector.applyMatrix4( viewProjectionMatrix );
+ 
+ 			var element = object.element;
+-			var style = 'translate(-50%,-50%) translate(' + ( vector.x * _widthHalf + _widthHalf ) + 'px,' + ( - vector.y * _heightHalf + _heightHalf ) + 'px)';
++			// DIFFER FROM ORIGINAL THREE.JS
++			// Rounds the value to a whole number as it led to lines being rendered onto the scene in Safari
++			var style = 'translate(-50%,-50%) translate(' + Math.round(vector.x * _widthHalf + _widthHalf) + 'px,' + Math.round(- vector.y * _heightHalf + _heightHalf) + 'px)';
+ 
+ 			element.style.WebkitTransform = style;
+ 			element.style.MozTransform = style;
+ 			element.style.oTransform = style;
+ 			element.style.transform = style;
+ 
++			// DIFFER FROM ORIGINAL THREE.JS
++			// element.style.display = ( object.visible && vector.z >= - 1 && vector.z <= 1 ) ? '' : 'none';
++			// Not possible to tab into elements with the original display:none for elements out of view
++			element.style.left = ( object.visible && vector.z >= - 1 && vector.z <= 1 ) ? '' : '-99999px';
++			// Used to prevent elements that should be out of view being clickable
++			element.style.pointerEvents = ( object.visible && vector.z >= - 1 && vector.z <= 1 ) ? '' : 'none';
++
+ 			var objectData = {
+ 				distanceToCameraSquared: getDistanceToSquared( camera, object )
+ 			};
+@@ -166,7 +175,12 @@ THREE.CSS2DRenderer = function () {
+ 		viewProjectionMatrix.multiplyMatrices( camera.projectionMatrix, viewMatrix );
+ 
+ 		renderObject( scene, camera );
+-		zOrder( scene );
++
++		// DIFFER FROM ORIGINAL THREE.JS
++		// Can't use a z-index that makes it higher and higher.
++		// This will make other elements shown below.
++		// Higher z-index is added when focus or hover
++		//zOrder( scene );
+ 
+ 	};
+ 
