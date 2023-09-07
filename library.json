@@ -14,7 +14,7 @@
   },
   "preloadedJs": [
     {
-      "path": "dist/dist.js"
+      "path": "dist/three.min.js"
     }
   ]
 }
