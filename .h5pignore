@@ -1,0 +1,14 @@
+three.js
+node_modules
+patches
+.idea
+.git
+.babelrc
+.gitmodules
+.h5pignore
+.travis.yml
+webpack.config.js
+webpack.dev.config.js
+README.md
+package.json
+package-lock.json
