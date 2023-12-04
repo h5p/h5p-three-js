@@ -1,0 +1,28 @@
+{
+  "name": "h5p-three-js",
+  "version": "1.1.0",
+  "description": "Provides H5P with the popular, easy to use and lightweight 3D library: three.js",
+  "main": "builder.js",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "patch-package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h5p/h5p-three-js.git"
+  },
+  "author": "three.js authors & H5P Group",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h5p/h5p-three-js/issues"
+  },
+  "homepage": "https://github.com/h5p/h5p-three-js#readme",
+  "devDependencies": {
+    "patch-package": "^8.0.0",
+    "three": "0.101.0",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
