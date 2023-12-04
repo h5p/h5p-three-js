@@ -21,7 +21,7 @@
   "homepage": "https://github.com/h5p/h5p-three-js#readme",
   "devDependencies": {
     "patch-package": "^8.0.0",
-    "three": "0.101.0",
+    "three": "^0.159.0",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   }

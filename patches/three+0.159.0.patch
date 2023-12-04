@@ -1,0 +1,57 @@
+diff --git a/node_modules/three/examples/jsm/renderers/CSS2DRenderer.js b/node_modules/three/examples/jsm/renderers/CSS2DRenderer.js
+index 6d67931..d15c2d0 100644
+--- a/node_modules/three/examples/jsm/renderers/CSS2DRenderer.js
++++ b/node_modules/three/examples/jsm/renderers/CSS2DRenderer.js
+@@ -96,7 +96,11 @@ class CSS2DRenderer {
+ 			_viewMatrix.copy( camera.matrixWorldInverse );
+ 			_viewProjectionMatrix.multiplyMatrices( camera.projectionMatrix, _viewMatrix );
+ 			
+-			renderObject( scene, scene, camera );
++      renderObject( scene, scene, camera );
++      // DIFFER FROM ORIGINAL THREE.JS
++		  // Can't use a z-index that makes it higher and higher.
++		  // This will make other elements shown below.
++		  // Higher z-index is added when focus or hover
+ 			zOrder( scene );
+ 
+ 		};
+@@ -122,15 +126,17 @@ class CSS2DRenderer {
+ 				_vector.applyMatrix4( _viewProjectionMatrix );
+ 
+ 				const visible = ( object.visible === true ) && ( _vector.z >= - 1 && _vector.z <= 1 ) && ( object.layers.test( camera.layers ) === true );
+-				object.element.style.display = ( visible === true ) ? '' : 'none';
++        // DIFFER FROM ORIGINAL THREE.JS
++				//object.element.style.display = ( visible === true ) ? '' : 'none';
+ 
+ 				if ( visible === true ) {
+ 
+ 					object.onBeforeRender( _this, scene, camera );
+ 
+ 					const element = object.element;
+-
+-					element.style.transform = 'translate(' + ( - 100 * object.center.x ) + '%,' + ( - 100 * object.center.y ) + '%)' + 'translate(' + ( _vector.x * _widthHalf + _widthHalf ) + 'px,' + ( - _vector.y * _heightHalf + _heightHalf ) + 'px)';
++          // DIFFER FROM ORIGINAL THREE.JS
++          // Rounds the value to a whole number as it led to lines being rendered onto the scene in Safari
++					element.style.transform = 'translate(' + ( - 100 * object.center.x ) + '%,' + ( - 100 * object.center.y ) + '%)' + 'translate(' + Math.round( _vector.x * _widthHalf + _widthHalf ) + 'px,' + Math.round( - _vector.y * _heightHalf + _heightHalf ) + 'px)';
+ 
+ 					if ( element.parentNode !== domElement ) {
+ 
+@@ -138,9 +144,18 @@ class CSS2DRenderer {
+ 
+ 					}
+ 
++          element.style.left = '';
++          element.style.pointerEvents = '';
++
+ 					object.onAfterRender( _this, scene, camera );
+ 
+ 				}
++        else {
++          // Not possible to tab into elements with the original display:none for elements out of view
++          element.style.left = '-99999px';
++          // Used to prevent elements that should be out of view being clickable
++          element.style.pointerEvents = 'none';
++        }
+ 
+ 				const objectData = {
+ 					distanceToCameraSquared: getDistanceToSquared( camera, object )
